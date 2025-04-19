@@ -46,6 +46,7 @@ export const getUserByEmail = async (email: string) => {
 export async function getIssues() {
   'use cache'
   cacheTag('issues')
+  console.log('fetch from db')
   try {
     await mockDelay(1000)
     const result = await db.query.issues.findMany({
