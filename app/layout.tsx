@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Toaster } from 'react-hot-toast'
+import { Suspense } from 'react'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -23,7 +24,8 @@ export default function RootLayout({
       <body className={`${inter.variable} font-sans antialiased`}>
         <Toaster position="top-right" />
         <h1>root</h1>
-        {children}
+
+        <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
       </body>
     </html>
   )

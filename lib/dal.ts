@@ -36,6 +36,7 @@ export const getUserByEmail = async (email: string) => {
 }
 
 export async function getIssues() {
+  'use cache'
   try {
     await mockDelay(2000)
     const result = await db.query.issues.findMany({
@@ -48,5 +49,21 @@ export async function getIssues() {
   } catch (error) {
     console.error('Error fetching issues:', error)
     throw new Error('Failed to fetch issues')
+  }
+}
+
+export async function getIssue(id: number) {
+  try {
+    await mockDelay(2000)
+    const result = await db.query.issues.findFirst({
+      where: eq(issues.id, id),
+      with: {
+        user: true,
+      },
+    })
+    return result
+  } catch (error) {
+    console.error(error)
+    throw new Error('Failed to fetch issue')
   }
 }
