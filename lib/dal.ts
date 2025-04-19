@@ -56,6 +56,8 @@ export async function getIssues() {
       orderBy: (issues, { desc }) => [desc(issues.createdAt)],
     })
 
+    //! kolko bude v cache, nie je to take ako TanStack Query granularne
+    // cacheLife("minutes")
     return result
   } catch (error) {
     console.error('Error fetching issues:', error)
