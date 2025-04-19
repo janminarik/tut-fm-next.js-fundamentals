@@ -7,6 +7,7 @@ import { mockDelay } from './utils'
 
 // Current user
 export const getCurrentUser = async () => {
+  await mockDelay(2000)
   const session = await getSession()
   if (!session) return null
 
